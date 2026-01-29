@@ -20,8 +20,9 @@ public class Category implements Serializable {
     private Long id;
     private String name;
 
-    @Transient
-    Set<Product> products = new HashSet<>();
+    @JsonIgnore
+    @ManyToMany(mappedBy = "categories")
+    private Set<Product> products = new HashSet<>();
 
     public Category(){}
     public Category(Long id, String name) {
@@ -44,6 +45,7 @@ public class Category implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
 
     public Set<Product> getProducts(){
         return products;

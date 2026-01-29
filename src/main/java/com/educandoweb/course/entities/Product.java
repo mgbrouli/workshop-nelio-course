@@ -1,7 +1,7 @@
 package com.educandoweb.course.entities;
 
 import jakarta.persistence.*;
-import org.springframework.web.bind.annotation.GetMapping;
+
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -25,7 +25,11 @@ public class Product implements Serializable {
     private String imgUrl;
 
 
-    @Transient
+    @ManyToMany
+    @JoinTable(name = "tb_produtct_category",
+            joinColumns = @JoinColumn(name="product_id"),
+            inverseJoinColumns = @JoinColumn(name="categody_id")
+    )
     private Set<Category> categories = new HashSet<>();
 
     public Product(){}
@@ -76,6 +80,10 @@ public class Product implements Serializable {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public Set<Category> getCategorie(){
+        return categories;
     }
 
     @Override
