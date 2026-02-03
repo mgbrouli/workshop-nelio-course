@@ -62,7 +62,7 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public String getPhon(){
+    public String getPhone(){
         return phone;
     }
     public void setPhone(String phone){
